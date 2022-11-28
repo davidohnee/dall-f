@@ -105,16 +105,16 @@ createApp({
             // random rectangles
             for (let i = 0; i < this.generator.rectangles.value; i++) {
                 const {x, y} = this.randomPoint();
-                const width = Math.random() * 100;
-                const height = Math.random() * 100;
+                const width = Math.random() * 200;
+                const height = Math.random() * 200;
                 ctx.fillStyle = this.randomColour();
                 ctx.fillRect(x, y, width, height);
             }
             // random ellipses
             for (let i = 0; i < this.generator.ellipses.value; i++) {
                 const {x, y} = this.randomPoint();
-                const width = Math.random() * 100;
-                const height = Math.random() * 100;
+                const width = Math.random() * 200;
+                const height = Math.random() * 200;
                 ctx.fillStyle = this.randomColour();
                 ctx.beginPath();
                 ctx.ellipse(x, y, width, height, 0, 0, 2 * Math.PI);
