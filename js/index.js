@@ -31,19 +31,23 @@ createApp({
                 background: {
                     type: "color",
                     value: "#ffffff",
-                    onchange: this.setBackground
+                    onChange: this.setBackground
                 },
             },
             form: {
                 title: {
                     type: "text",
                     value: null,
-                    placeholder: "your artwork's title..."
+                    placeholder: "your artwork's title...",
+                    error: "please name your artwork",
+                    hasError: false,
                 },
                 name: {
                     type: "text",
                     value: null,
                     placeholder: "your name...",
+                    error: "please enter your name",
+                    hasError: false,
                 },
                 age: {
                     type: "number",
@@ -51,12 +55,18 @@ createApp({
                     min: 18,
                     max: 120,
                     placeholder: "your age...",
+                    error: "please enter your age",
+                    rangeError: "you must be at least 18 years old",
+                    hasError: false,
                 },
                 email: {
                     type: "email",
                     value: null,
                     placeholder: "your email...",
-                }
+                    error: "please enter your email",
+                    validate: (value) => value.includes("@") ? null : "please enter a valid email",
+                    hasError: false,
+                },
             }
         }
     },
@@ -78,7 +88,7 @@ createApp({
                 this.clear();
             }
         },
-        titleCase(str) {
+        toTitleCase(str) {
             return str[0].toUpperCase() + str.slice(1);
         },
         randomPoint() {
@@ -132,32 +142,34 @@ createApp({
             }
         },
         validate() {
-            this.canSubmit = false;
-            if (!this.form.title.value) {
-                this.error = 'Please name your artwork';
-                return;
-            }
-            if (!this.form.name.value) {
-                this.error = 'Please enter your name';
-                return;
-            }
-            if (!this.form.age.value) {
-                this.error = 'Please enter your age';
-                return;
-            }
-            if (this.form.age.value < this.form.age.min || this.form.age.value > this.form.age.max) {
-                this.error = `Please enter your age between ${this.form.age.min} and ${this.form.age.max}`;
-                return;
-            }
-            if (!this.form.email.value) {
-                this.error = 'Please enter your email';
-                return;
-            }
-            if (!this.form.email.value.includes('@')) {
-                this.error = 'Please enter a valid email';
-                return;
-            }
             this.error = null;
+            this.canSubmit = false;
+
+            for (const key in this.form) {
+                this.form[key].hasError = true;
+                const value = this.form[key].value;
+                if (!value) {
+                    this.error = this.form[key].error;
+                    return;
+                }
+                if (this.form[key].validate) {
+                    const error = this.form[key].validate(value);
+                    if (error) {
+                        this.error = error;
+                        return;
+                    }
+                }
+                if (this.form[key].min && value < this.form[key].min) {
+                    this.error = this.form[key].rangeError;
+                    return;
+                }
+                if (this.form[key].max && value > this.form[key].max) {
+                    this.error = this.form[key].rangeError;
+                    return;
+                }
+                this.form[key].hasError = false;
+            }
+
             this.canSubmit = true;
         }
     }

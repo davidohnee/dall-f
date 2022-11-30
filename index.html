@@ -6,33 +6,39 @@
     <title>DALL-F</title>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script defer src="./js/index.js"></script>
-    <link rel="stylesheet" href="./css/index.css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="./css/index.css">
 </head>
 <body id="app">
 <header>
-    <ul class="w3-bar w3-teal navbar">
+    <nav class="w3-bar w3-teal navbar">
         <a class="w3-bar-item w3-button" href="#dall-f">
             <h3>DALL-F</h3>
         </a>
         <a class="w3-bar-item w3-button" href="#about">About</a>
-    </ul>
+    </nav>
 </header>
 <main class="w3-row" id="dall-f">
     <section class="w3-half w3-container image-generator">
         <div class="image-generator__buttons">
-            <button class="w3-button w3-teal w3-round w3-mobile image-generator__button" @click="generate">Generate</button>
+            <button class="w3-button w3-teal w3-round w3-mobile image-generator__button" @click="generate">Generate
+            </button>
             <button class="w3-button w3-teal w3-round image-generator__button" @click="clear">Clear</button>
             <button class="w3-button w3-teal w3-round image-generator__button" @click="download">Download</button>
         </div>
         <form class="w3-container w3-row image-generator__config">
-            <fieldset v-for="key in Object.keys(generator)" :key="key" class="w3-round">
-                <label class="w3-text-teal"><b>{{titleCase(key)}}</b></label>
+            <fieldset
+                    v-for="key in Object.keys(generator)"
+                    :key="key"
+                    class="w3-round"
+            >
+                <label class="w3-text-teal">
+                    <b>{{toTitleCase(key)}}</b>
+                </label>
                 <input
                         class="w3-input w3-border w3-light-grey"
                         :type="generator[key].type"
-                        @input="generator[key]?.oninput"
-                        @change="generator[key]?.onchange"
+                        @change="generator[key].onChange"
                         v-model="generator[key].value"
                 >
             </fieldset>
@@ -40,15 +46,21 @@
         <canvas class="image-generator__image" ref="canvas"></canvas>
     </section>
     <section class="w3-half">
-        <form class="w3-container" action="/submit.php" method="POST">
+        <form
+                class="w3-container"
+                action="/submit.php"
+                method="POST"
+        >
             <h2>Submission</h2>
             <p
                     class="w3-text-red"
                     v-if="error"
-            >{{error}}</p>
+            >
+                {{error}}
+            </p>
             <fieldset class="w3-round">
                 <template v-for="key in Object.keys(form)">
-                    <label>{{titleCase(key)}}</label>
+                    <label>{{toTitleCase(key)}}</label>
                     <input
                             class="w3-input"
                             :placeholder="form[key].placeholder"
@@ -58,10 +70,16 @@
                             :max="form[key].max"
                             v-model="form[key].value"
                             @input="validate"
+                            :class="{'w3-border-red': form[key].hasError}"
                     >
                 </template>
             </fieldset>
-            <input class="w3-button w3-green w3-margin-top w3-round" type="submit" value="Submit" :disabled="!canSubmit">
+            <input
+                    class="w3-button w3-green w3-margin-top w3-round"
+                    type="submit"
+                    value="Submit"
+                    :disabled="!canSubmit"
+            >
         </form>
     </section>
 </main>
@@ -75,32 +93,38 @@
                 However, it disappoints in creating simple, abstract art.
                 DALL-F creates art inspired by works such as
                 <i><a href="https://www.jackson-pollock.org/convergence.jsp">Convergence</a></i> and
-                <i><a href="https://en.wikipedia.org/wiki/Composition_with_Red_Blue_and_Yellow">Composition II with Red, Blue and Yellow</a></i>.
+                <i><a href="https://en.wikipedia.org/wiki/Composition_with_Red_Blue_and_Yellow">Composition II with Red,
+                    Blue and Yellow</a></i>.
                 <br>
                 <br>
-                DALL-F is not only blazingly fast, platform-independent and completely free, but also requires hardly any resources.
-                This is mainly due to the fact, that instead of neural networks, DALL-F relies on the power of JavaScript's Math.random function,
+                DALL-F is not only blazingly fast, platform-independent and completely free, but also requires hardly
+                any resources.
+                This is mainly due to the fact, that instead of neural networks, DALL-F relies on the power of
+                JavaScript's Math.random function,
                 which significantly outperforms any artificial intelligence.
                 <br>
-                In addition, DALL-F offers you many customisation options. You can even submit your art to be evaluated by art critics.
-                All you have to do is fill in the form above. You will likely receive the result by email within a few weeks.
+                In addition, DALL-F offers you many customisation options. You can even submit your art to be evaluated
+                by art critics.
+                All you have to do is fill in the form above. You will likely receive the result by email within a few
+                weeks.
                 <br>
                 <br>
-                In a direct comparison, DALL-E generated the following image in 14.61s, while DALL-F took merely 1.42ms (about 10'000 times faster):
+                In a direct comparison, DALL-E generated the following image in 14.61s, while DALL-F took merely 1.42ms
+                (about 10'000 times faster):
             </p>
             <div class="examples">
-                <div class="examples__image-info">
+                <figure class="examples__image-info">
                     <img class="w3-round" src="./var/convergence.jpg" alt="Convergence">
-                    <p class="w3-small">Convergence by Jackson Pollock</p>
-                </div>
-                <div class="examples__image-info">
+                    <figcaption class="w3-small">Convergence by Jackson Pollock</figcaption>
+                </figure>
+                <figure class="examples__image-info">
                     <img class="w3-round" src="./var/convergence_dalle.png" alt="DALL-E creation based on Convergence">
-                    <p class="w3-small">DALL-E creation based on Convergence (14.61s)</p>
-                </div>
-                <div class="examples__image-info">
+                    <figcaption class="w3-small">DALL-E creation based on Convergence (14.61s)</figcaption>
+                </figure>
+                <figure class="examples__image-info">
                     <img class="w3-round" src="./var/convergence_dallf.png" alt="DALL-F creation based on Convergence">
-                    <p class="w3-small">DALL-F creation based on Convergence (1.4ms)</p>
-                </div>
+                    <figcaption class="w3-small">DALL-F creation based on Convergence (1.4ms)</figcaption>
+                </figure>
             </div>
         </div>
     </section>

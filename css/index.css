@@ -1,5 +1,5 @@
-.navbar {
-    margin-top: 0;
+nav.navbar {
+    margin-bottom: 1rem;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -12,10 +12,11 @@
     align-items: center;
 }
 
-.image-generator__image {
+canvas.image-generator__image {
     width: 80%;
     object-fit: cover;
     border: 1px solid #000;
+    max-width: 80vh; /* since it's a square image that applies to the height too */
 }
 
 .image-generator__buttons {
@@ -34,7 +35,7 @@
 }
 
 .image-generator__config {
-    padding: 0 !important;
+    padding: 0;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -44,6 +45,13 @@
 .image-generator__config fieldset {
     min-width: 100px;
     flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+input[type=color] {
+    width: 100%;
+    height: 40px;
 }
 
 .examples {
@@ -61,4 +69,8 @@
 .examples__image-info img {
     width: 100%;
     object-fit: cover;
+}
+
+figure {
+    margin: 0;
 }
