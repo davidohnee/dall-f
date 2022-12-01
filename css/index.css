@@ -43,10 +43,11 @@ canvas.image-generator__image {
 }
 
 .image-generator__config fieldset {
-    min-width: 100px;
+    min-width: 120px;
     flex: 1;
     display: flex;
     flex-direction: column;
+    margin-bottom: 2px;
 }
 
 input[type=color] {
@@ -72,5 +73,5 @@ input[type=color] {
 }
 
 figure {
-    margin: 0;
+    margin: 0 0 1rem 0;
 }

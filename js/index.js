@@ -1,13 +1,3 @@
-/**
- * TODOs
- * variable background
- * clear button
- * download button
- * navbar
- * about section
- * images
- */
-
 const {createApp} = Vue;
 
 createApp({
@@ -39,15 +29,15 @@ createApp({
                     type: "text",
                     value: null,
                     placeholder: "your artwork's title...",
-                    error: "please name your artwork",
-                    hasError: false,
+                    error: null,
+                    validate: value => value ? null : "please enter a title"
                 },
                 name: {
                     type: "text",
                     value: null,
                     placeholder: "your name...",
-                    error: "please enter your name",
-                    hasError: false,
+                    error: null,
+                    validate: value => value ? null : "please enter your name"
                 },
                 age: {
                     type: "number",
@@ -55,18 +45,41 @@ createApp({
                     min: 18,
                     max: 120,
                     placeholder: "your age...",
-                    error: "please enter your age",
-                    rangeError: "you must be at least 18 years old",
-                    hasError: false,
+                    error: null,
+                    validate: value => {
+                        if (!value) {
+                            return "please enter your age";
+                        }
+                        if (value < this.form.age.min) {
+                            return `you must be at least ${this.form.age.min} years old`;
+                        }
+                        if (value > this.form.age.max) {
+                            return `you can't be older than ${this.form.age.max}`;
+                        }
+                        return null;
+                    },
                 },
                 email: {
                     type: "email",
                     value: null,
                     placeholder: "your email...",
-                    error: "please enter your email",
-                    validate: (value) => value.includes("@") ? null : "please enter a valid email",
-                    hasError: false,
+                    error: null,
+                    validate: (value) => {
+                        if (!value) {
+                            return "please enter your email";
+                        }
+                        if (!value.includes("@")) {
+                            return "please enter a valid email";
+                        }
+                        return null;
+                    },
                 },
+                canvas: {
+                    type: "text",
+                    value: null,
+                    hidden: true,
+                    validate: _ => null
+                }
             }
         }
     },
@@ -75,13 +88,18 @@ createApp({
         const ctx = canvas.getContext('2d');
         ctx.canvas.width = 1000;
         ctx.canvas.height = 1000;
+        this.renderCanvas();
     },
     methods: {
+        renderCanvas() {
+            this.form.canvas.value = this.$refs.canvas.toDataURL();
+        },
         clear() {
             const canvas = this.$refs.canvas;
             const ctx = canvas.getContext('2d');
             ctx.fillStyle = this.generator.background.value;
             ctx.fillRect(0, 0, canvas.width, canvas.height);
+            this.renderCanvas();
         },
         setBackground() {
             if (confirm("changes will take effect after clearing. Do you want to clear now?")) {
@@ -140,34 +158,19 @@ createApp({
                 ctx.lineTo(x2, y2);
                 ctx.stroke();
             }
+            this.renderCanvas();
         },
         validate() {
             this.error = null;
             this.canSubmit = false;
 
             for (const key in this.form) {
-                this.form[key].hasError = true;
-                const value = this.form[key].value;
-                if (!value) {
-                    this.error = this.form[key].error;
+                const field = this.form[key];
+                field.error = field.validate(field.value);
+                if (field.error) {
+                    this.error = field.error;
                     return;
                 }
-                if (this.form[key].validate) {
-                    const error = this.form[key].validate(value);
-                    if (error) {
-                        this.error = error;
-                        return;
-                    }
-                }
-                if (this.form[key].min && value < this.form[key].min) {
-                    this.error = this.form[key].rangeError;
-                    return;
-                }
-                if (this.form[key].max && value > this.form[key].max) {
-                    this.error = this.form[key].rangeError;
-                    return;
-                }
-                this.form[key].hasError = false;
             }
 
             this.canSubmit = true;
