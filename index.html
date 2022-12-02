@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="an abstract art generator">
     <title>DALL-F</title>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script defer src="./js/index.js"></script>
@@ -33,10 +34,14 @@
                         :key="key"
                         class="w3-round"
                 >
-                    <label class="w3-text-teal">
+                    <label
+                            class="w3-text-teal"
+                            :for="key"
+                    >
                         <strong>{{toTitleCase(key)}}</strong>
                     </label>
                     <input
+                            :id="key"
                             class="w3-input w3-border w3-light-grey"
                             :type="generator[key].type"
                             @change="generator[key].onChange"
@@ -61,7 +66,12 @@
                 </p>
                 <fieldset class="w3-round">
                     <template v-for="key in Object.keys(form)">
-                        <label v-if="!form[key].hidden">{{toTitleCase(key)}}</label>
+                        <label
+                                :for="key"
+                                v-if="!form[key].hidden"
+                        >
+                            {{toTitleCase(key)}}
+                        </label>
                         <input
                                 class="w3-input"
                                 v-show="!form[key].hidden"
@@ -109,26 +119,24 @@
             weeks.
             <br>
             <br>
-            In a direct comparison, DALL-E generated the following image in 14.61s, while DALL-F took merely 1.42ms
-            (about 10'000 times faster):
+            In a direct comparison, DALL-E generated the image below in 14.61s, while DALL-F took merely 1.42ms
+            (about 10'000 times faster).
+            Like it? DALL-F 2 is already in the works. It will add a lot of new features, such as curves, polygons and even freeform shapes.
         </p>
         <div class="examples">
             <figure class="examples__image-info">
-                <img class="w3-round" src="./var/convergence.jpg" alt="Convergence">
+                <img class="w3-round" src="./var/convergence.webp" alt="Convergence">
                 <figcaption class="w3-small">Convergence by Jackson Pollock</figcaption>
             </figure>
             <figure class="examples__image-info">
-                <img class="w3-round" src="./var/convergence_dalle.png" alt="DALL-E creation based on Convergence">
+                <img class="w3-round" src="./var/convergence_dalle.webp" alt="DALL-E creation based on Convergence">
                 <figcaption class="w3-small">DALL-E creation based on Convergence (14.61s)</figcaption>
             </figure>
             <figure class="examples__image-info">
-                <img class="w3-round" src="./var/convergence_dallf.png" alt="DALL-F creation based on Convergence">
+                <img class="w3-round" src="./var/convergence_dallf.webp" alt="DALL-F creation based on Convergence">
                 <figcaption class="w3-small">DALL-F creation based on Convergence (1.4ms)</figcaption>
             </figure>
         </div>
-        <p>
-            Like it? DALL-F 2 is already in the works. It will add a lot of new features, such as curves, polygons and even freeform shapes.
-        </p>
     </section>
 </main>
 </body>
