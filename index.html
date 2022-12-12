@@ -12,7 +12,7 @@
 </head>
 <body id="app">
 <header>
-    <nav class="w3-bar w3-teal navbar">
+    <nav class="w3-bar w3-indigo navbar">
         <a class="w3-bar-item w3-button" href="#dall-f">
             <h3>DALL-F</h3>
         </a>
@@ -23,10 +23,10 @@
     <section class="w3-row" id="dall-f">
         <section class="w3-half w3-container image-generator">
             <div class="image-generator__buttons">
-                <button class="w3-button w3-teal w3-round w3-mobile image-generator__button" @click="generate">Generate
+                <button class="w3-button w3-indigo w3-round w3-mobile image-generator__button" @click="generate">Generate
                 </button>
-                <button class="w3-button w3-teal w3-round image-generator__button" @click="clear">Clear</button>
-                <button class="w3-button w3-teal w3-round image-generator__button" @click="download">Download</button>
+                <button class="w3-button w3-indigo w3-round image-generator__button" @click="clear">Clear</button>
+                <button class="w3-button w3-indigo w3-round image-generator__button" @click="download">Download</button>
             </div>
             <form class="w3-container w3-row image-generator__config">
                 <fieldset
@@ -35,7 +35,7 @@
                         class="w3-round"
                 >
                     <label
-                            class="w3-text-teal"
+                            class="w3-text-indigo"
                             :for="key"
                     >
                         <strong>{{toTitleCase(key)}}</strong>
