@@ -44,6 +44,7 @@
                             :id="key"
                             class="w3-input w3-border w3-light-grey"
                             :type="generator[key].type"
+                            :min="generator[key].min"
                             @change="generator[key].onChange"
                             v-model="generator[key].value"
                     >
@@ -96,9 +97,9 @@
         </aside>
     </section>
     <hr>
-    <section id="about" class="w3-container w3-col">
-        <h3>About</h3>
-        <p>
+    <section id="about" class="w3-container w3-row">
+        <article class="w3-half">
+            <h3>About</h3>
             You might have come across OpenAI's <a href="https://openai.com/blog/dall-e/">DALL-E</a> project.
             This is an artificial intelligence that can generate images from text descriptions.
             However, it disappoints in creating simple, abstract art.
@@ -122,8 +123,8 @@
             In a direct comparison, DALL-E generated the image below in 14.61s, while DALL-F took merely 1.42ms
             (about 10'000 times faster).
             Like it? DALL-F 2 is already in the works. It will add a lot of new features, such as curves, polygons and even freeform shapes.
-        </p>
-        <div class="examples">
+        </article>
+        <div class="examples w3-half">
             <figure class="examples__image-info">
                 <img class="w3-round" src="./var/convergence.webp" alt="Convergence">
                 <figcaption class="w3-small">Convergence by Jackson Pollock</figcaption>

@@ -8,15 +8,19 @@ createApp({
             generator: {
                 lines: {
                     type: "number",
-                    value: 2
+                    value: 2,
+                    min: 0
                 },
                 ellipses: {
                     type: "number",
-                    value: 1
+                    value: 1,
+                    min: 0
+
                 },
                 rectangles: {
                     type: "number",
-                    value: 1
+                    value: 1,
+                    min: 0
                 },
                 background: {
                     type: "color",
