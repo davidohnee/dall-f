@@ -23,7 +23,8 @@
     <section class="w3-row" id="dall-f">
         <section class="w3-half w3-container image-generator">
             <div class="image-generator__buttons">
-                <button class="w3-button w3-indigo w3-round w3-mobile image-generator__button" @click="generate">Generate
+                <button class="w3-button w3-indigo w3-round w3-mobile image-generator__button" @click="generate">
+                    Generate
                 </button>
                 <button class="w3-button w3-indigo w3-round image-generator__button" @click="clear">Clear</button>
                 <button class="w3-button w3-indigo w3-round image-generator__button" @click="download">Download</button>
@@ -98,31 +99,35 @@
     </section>
     <hr>
     <section id="about" class="w3-container w3-row">
-        <article class="w3-half">
+        <article class="article w3-half">
             <h3>About</h3>
-            You might have come across OpenAI's <a href="https://openai.com/blog/dall-e/">DALL-E</a> project.
-            This is an artificial intelligence that can generate images from text descriptions.
-            However, it disappoints in creating simple, abstract art.
-            DALL-F creates art inspired by works such as
-            <i><a href="https://www.jackson-pollock.org/convergence.jsp">Convergence</a></i> and
-            <i><a href="https://en.wikipedia.org/wiki/Composition_with_Red_Blue_and_Yellow">Composition II with Red,
-                Blue and Yellow</a></i>.
-            <br>
-            <br>
-            DALL-F is not only blazingly fast, platform-independent and completely free, but also requires hardly
-            any resources.
-            This is mainly due to the fact, that instead of neural networks, DALL-F relies on the power of
-            JavaScript's Math.random function,
-            which significantly outperforms any artificial intelligence.
-            <br>
-            In addition, DALL-F offers you many customisation options. You can even submit your art to be evaluated by art critics.
-            All you have to do is fill in the form above. You will likely receive the result by email within a few
-            weeks.
-            <br>
-            <br>
-            In a direct comparison, DALL-E generated the image below in 14.61s, while DALL-F took merely 1.42ms
-            (about 10'000 times faster).
-            Like it? DALL-F 2 is already in the works. It will add a lot of new features, such as curves, polygons and even freeform shapes.
+            <p class="article__content">
+                You might have come across OpenAI's <a href="https://openai.com/blog/dall-e/">DALL-E</a> project.
+                This is an artificial intelligence that can generate images from text descriptions.
+                However, it disappoints in creating simple, abstract art.
+                DALL-F creates art inspired by works such as
+                <i><a href="https://www.jackson-pollock.org/convergence.jsp">Convergence</a></i> and
+                <i><a href="https://en.wikipedia.org/wiki/Composition_with_Red_Blue_and_Yellow">Composition II with Red,
+                    Blue and Yellow</a></i>.
+                <br>
+                <br>
+                DALL-F is not only blazingly fast, platform-independent and completely free, but also requires hardly
+                any resources.
+                This is mainly due to the fact, that instead of neural networks, DALL-F relies on the power of
+                JavaScript's Math.random function,
+                which significantly outperforms any artificial intelligence.
+                <br>
+                In addition, DALL-F offers you many customisation options. You can even submit your art to be evaluated
+                by art critics.
+                All you have to do is fill in the form above. You will likely receive the result by email within a few
+                weeks.
+                <br>
+                <br>
+                In a direct comparison, DALL-E generated the image below in 14.61s, while DALL-F took merely 1.42ms
+                (about 10'000 times faster).
+                Like it? DALL-F 2 is already in the works. It will add a lot of new features, such as curves, polygons
+                and even freeform shapes.
+            </p>
         </article>
         <div class="examples w3-half">
             <figure class="examples__image-info">
