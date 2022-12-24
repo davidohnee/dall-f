@@ -1,60 +1,17 @@
-.navbar {
-    margin-bottom: 1rem;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    width: 100%;
-}
-
-.image-generator {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
+/* general css rules where w3.css is not enough */
 .image-generator__image {
-    width: 80%;
     object-fit: cover;
     border: 1px solid #000;
+    width: 80%;
     max-width: 80vh; /* since it's a square image that applies to the height too */
 }
 
-.image-generator__buttons {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-}
-
-.image-generator__button {
-    margin-bottom: 1rem;
-    width: 100%;
-}
-
-.image-generator__button:not(:first-child) {
-    margin-left: 1rem;
-}
-
-.image-generator__config {
-    padding: 0;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    margin-bottom: 1rem;
-}
-
-.image-generator__config fieldset {
-    min-width: 120px;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 2px;
-}
-
 input[type=color] {
-    width: 100%;
-    height: 40px;
+    height: 40px; /* for chrome */
+    border-radius: 0; /* for safari */
 }
 
+/* the custom positioning */
 .examples {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -69,7 +26,7 @@ input[type=color] {
 
 @media (max-width: 1450px) {
     .examples__image-info:nth-child(2) {
-        grid-column: 2 / 1;
+        grid-column: 2 / 1; /* it's compared to child #3 */
     }
 }
 
@@ -90,6 +47,7 @@ figure {
     gap: 1rem;
 }
 
+/* #mobileFirst */
 @media (min-width: 700px) {
     .about {
         grid-template-columns: 0 minmax(20ch, 60ch) minmax(250px, 100%) 0;

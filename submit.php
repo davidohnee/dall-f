@@ -21,7 +21,7 @@
     $email = $_POST['email'];
     $age = $_POST['age'];
     $title = $_POST['title'];
-    $canvas = $_POST['canvas'];
+    $canvas = $_POST['canvas']; // in a real world application, we'd store it ;)
 
     // Check if the data is valid
     if (empty($name) || empty($email) || empty($age) || empty($title) || empty($canvas)) {

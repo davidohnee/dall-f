@@ -12,28 +12,31 @@
 </head>
 <body id="app">
 <header>
-    <nav class="w3-bar w3-indigo navbar">
+    <nav class="w3-bar w3-indigo w3-padding-16">
         <a class="w3-bar-item w3-button" href="#dall-f">
-            <h3>DALL-F</h3>
+            DALL-F
         </a>
-        <a class="w3-bar-item w3-button" href="#about">About</a>
+        <a class="w3-bar-item w3-button w3-center" href="#about">
+            About
+        </a>
     </nav>
 </header>
 <main>
     <section class="w3-row" id="dall-f">
-        <section class="w3-half w3-container image-generator">
-            <div class="image-generator__buttons">
-                <button class="w3-button w3-indigo w3-round w3-mobile image-generator__button" @click="generate">
+        <section class="w3-half w3-container w3-center">
+            <div class="w3-bar w3-section w3-center">
+                <button class="w3-button w3-margin-right w3-indigo w3-round w3-mobile" @click="generate">
                     Generate
                 </button>
-                <button class="w3-button w3-indigo w3-round image-generator__button" @click="clear">Clear</button>
-                <button class="w3-button w3-indigo w3-round image-generator__button" @click="download">Download</button>
+                <button class="w3-button w3-margin-right w3-indigo w3-round w3-mobile" @click="clear">Clear</button>
+                <button class="w3-button w3-indigo w3-round w3-mobile" @click="download">Download</button>
             </div>
-            <form class="w3-container w3-row image-generator__config">
+            <form class="w3-container w3-margin-bottom w3-row">
                 <fieldset
                         v-for="key in Object.keys(generator)"
                         :key="key"
-                        class="w3-round"
+                        class="w3-round w3-col"
+                        style="width: 22.9%;"
                 >
                     <label
                             class="w3-text-indigo"
@@ -98,6 +101,7 @@
         </aside>
     </section>
     <hr>
+    <!-- note: this is the section with custom positioning (grid) -->
     <section id="about" class="w3-container about">
         <article class="article">
             <h3>About</h3>
@@ -131,15 +135,15 @@
         </article>
         <div class="examples">
             <figure class="examples__image-info">
-                <img class="w3-round" src="./var/convergence.webp" alt="Convergence">
+                <img class="w3-round" src="img/convergence.webp" alt="Convergence">
                 <figcaption class="w3-small">Convergence by Jackson Pollock</figcaption>
             </figure>
             <figure class="examples__image-info">
-                <img class="w3-round" src="./var/convergence_dalle.webp" alt="DALL-E creation based on Convergence">
+                <img class="w3-round" src="img/convergence_dalle.webp" alt="DALL-E creation based on Convergence">
                 <figcaption class="w3-small">DALL-E creation based on Convergence (14.61s)</figcaption>
             </figure>
             <figure class="examples__image-info">
-                <img class="w3-round" src="./var/convergence_dallf.webp" alt="DALL-F creation based on Convergence">
+                <img class="w3-round" src="img/convergence_dallf.webp" alt="DALL-F creation based on Convergence">
                 <figcaption class="w3-small">DALL-F creation based on Convergence (1.4ms)</figcaption>
             </figure>
         </div>

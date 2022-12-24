@@ -1,3 +1,7 @@
+/**
+ * Copyright (c) 2022, David Dias Horta
+ */
+
 const {createApp} = Vue;
 
 createApp({
@@ -72,7 +76,8 @@ createApp({
                         if (!value) {
                             return "please enter your email";
                         }
-                        if (!value.includes("@")) {
+                        /* email regex */
+                        if (!value.match(/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/)) {
                             return "please enter a valid email";
                         }
                         return null;
