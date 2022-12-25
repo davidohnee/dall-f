@@ -2,6 +2,10 @@
  * Copyright (c) 2022, David Dias Horta
  */
 
+console.log("%cHiya fellow developer :)", "font-size: 30px;");
+console.log("Copyright (c) 2022, David Dias Horta")
+console.log("This is my submission for the \"Web Technologies\" module at HSLU.")
+
 const {createApp} = Vue;
 
 createApp({
